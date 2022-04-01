@@ -1,5 +1,4 @@
 import "react-native-gesture-handler";
-import "expo-dev-client";
 import AppLoading from "expo-app-loading";
 import React, { useEffect, useState } from "react";
 import { View, SafeAreaView, Text, StyleSheet } from "react-native";
@@ -10,6 +9,11 @@ import { Chat, MessageList, MessageInput, Channel } from "stream-chat-expo";
 
 import { ChannelList } from "./components/ChannelList";
 import { ChannelHeader } from "./components/ChannelHeader";
+import { MessageSlack } from "./components/Message/MessageSlack";
+import { DateSeparator } from "./components/Message/DateSeparator";
+import { InputBox } from "./components/InputBox";
+
+import streamChatTheme from "./stream-chat-theme.js";
 
 import { StreamChat } from "stream-chat";
 
@@ -43,6 +47,27 @@ function ChannelScreen({ navigation, route }) {
           channel={channel}
           client={chatClient}
         />
+        <View style={styles.chatContainer}>
+          {/* <Chat client={chatClient} style={streamChatTheme}>
+            <Channel channel={channel}>
+              <MessageList
+                Message={MessageSlack}
+                DateSeparator={DateSeparator}
+              />
+              <MessageInput
+                Input={InputBox}
+                additionalTextInputProps={{
+                  placeholderTextColor: "#979A9A",
+                  placeholder:
+                    channel && channel.data.name
+                      ? "Message #" +
+                        channel.data.name.toLowerCase().replace(" ", "_")
+                      : "Message",
+                }}
+              />
+            </Channel>
+          </Chat> */}
+        </View>
       </View>
     </SafeAreaView>
   );
